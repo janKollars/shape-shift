@@ -4,8 +4,8 @@ export const useHasSensors = () => {
   const hasSensors = ref(false);
   if ('RelativeOrientationSensor' in window) {
     Promise.all([
-      navigator.permissions.query({ name: 'accelerometer' }),
-      navigator.permissions.query({ name: 'gyroscope' })
+      navigator.permissions.query({ name: 'accelerometer' as PermissionName }),
+      navigator.permissions.query({ name: 'gyroscope'  as PermissionName })
     ])
       .then(results => {
         if (results.some(permissionStatus => permissionStatus.state !== 'granted')) {
